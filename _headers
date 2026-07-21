@@ -1,0 +1,15 @@
+# Cloudflare response headers for static assets.
+# public/ is copied to the assets root (dist/client/), so this ships as
+# dist/client/_headers and is applied by Cloudflare Workers Static Assets.
+#
+# Fingerprinted Astro build assets (/_astro/*) are content-hashed (the
+# filename changes whenever the bytes change), so they are safe to cache
+# immutably. Previously they served `max-age=0, must-revalidate`, forcing a
+# revalidation round-trip on every navigation.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Self-hosted saint icons are slug-named (not content-hashed), so use a long
+# but revalidatable TTL: a regenerated icon eventually propagates.
+/icons/*
+  Cache-Control: public, max-age=2592000
