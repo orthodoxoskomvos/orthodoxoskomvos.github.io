@@ -1,0 +1,8 @@
+# Retired OCR Gerontikon per-letter pages -> the facsimile at /fathers/gerontiko/
+# Use a placeholder (:slug), NOT a splat: a splat also matched the facsimile
+# page's own URL /fathers/gerontiko/ and ping-ponged with Astro's trailing-slash
+# redirect (infinite loop). :slug requires a segment, so the bare index is never
+# matched. Cover both the slashed and unslashed old letter URLs; the destination
+# keeps the trailing slash so it lands on the page without a further bounce.
+/fathers/gerontiko/:slug/  /fathers/gerontiko/  301
+/fathers/gerontiko/:slug   /fathers/gerontiko/  301
